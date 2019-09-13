@@ -1,0 +1,7 @@
+{
+  "porta": 8080,
+  "server ip": "127.0.0.1",
+  "resposta": "Conectado",
+
+  "not Allawd": ["google", "facebook", "youtube"]
+}
