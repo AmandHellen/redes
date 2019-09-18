@@ -19,6 +19,7 @@ with open("config.json") as data_file:
 
 proxyIp = config['server ip']
 proxyGate = config['porta']
+erro501 = config['501']
 
 print("Configurações Carregadas")
 
@@ -33,6 +34,7 @@ def proxy_thread(connection_socket, ):
 	
 	msg_packs = msg.split(" ", 1)
 	if msg_packs[0] == "GET":
+		request = "GET"
 		print(msg_packs)
 		# PRIMEIRO FAZER FUNCIONAR CONECÇÃO DIRETA
 		
@@ -47,6 +49,10 @@ def proxy_thread(connection_socket, ):
 		domain = aux[0]
 		print("Domain: " + domain)
 		
+		request += " /" + aux[1]
+		print("Request: ")
+		print(bytes(request, "utf-8"))
+		
 		# catch the ip from the domain
 		ip = gethostbyname(domain)
 		print(ip)
@@ -55,7 +61,7 @@ def proxy_thread(connection_socket, ):
 			# open the TCP connection
 			server_socket.connect((ip, 80))
 			
-			server_socket.send(bytes(msg, "utf-8"))
+			server_socket.send(bytes(request, "utf-8"))
 			
 			# Receive the data from server
 			http = server_socket.recv(4096)

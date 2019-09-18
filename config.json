@@ -3,5 +3,6 @@
   "server ip": "127.0.0.1",
   "resposta": "Conectado",
 
-  "not Allawd": ["google", "facebook", "youtube"]
+  "not Allawd": ["google", "facebook", "youtube"],
+
 }
