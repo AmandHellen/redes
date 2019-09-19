@@ -35,6 +35,7 @@ def proxy_thread(connection_socket, ):
 	msg_packs = msg.split(" ", 1)
 	if msg_packs[0] == "GET":
 		request = "GET"
+		print("\n")
 		print(msg_packs)
 		# PRIMEIRO FAZER FUNCIONAR CONECÇÃO DIRETA
 		
@@ -47,15 +48,15 @@ def proxy_thread(connection_socket, ):
 		aux = msg_packs[1][7:]  # Remove 'http://'
 		aux = aux.split("/", 1)  # Separates domain from the data
 		domain = aux[0]
-		print("Domain: " + domain)
-		
-		request += " /" + aux[1]
-		print("Request: ")
-		print(bytes(request, "utf-8"))
+		print("DOMAIN: " + domain)
 		
 		# catch the ip from the domain
 		ip = gethostbyname(domain)
-		print(ip)
+		print("IP: " + ip)
+		
+		request += " /" + aux[1]
+		print("REQUEST: ", end = '')
+		print(bytes(request, "utf-8"))
 		
 		try:
 			# open the TCP connection
@@ -64,21 +65,22 @@ def proxy_thread(connection_socket, ):
 			server_socket.send(bytes(request, "utf-8"))
 			
 			# Receive the data from server
-			http = server_socket.recv(4096)
+			dados = server_socket.recv(4096)
 			# http = server_socket.recv(4096).decode("utf-8")
 			
-			print(http)
-			connection_socket.send(http)
+			print("DADOS: ", end='')
+			print(dados)
+			connection_socket.send(dados)
 			# connection_socket.send(bytes(http, "utf-8"))
 		except:
-			connection_socket.send(bytes("HTTP/1.1 502 Bad Gateway \r\n", "utf-8"))
+			connection_socket.send(bytes("HTTP/1.1 502 Bad Gateway\r\n", "utf-8"))
 		
 		# close the connection and server sockets
 		server_socket.close()
 		connection_socket.close()
 		
 	else:
-		connection_socket.send(bytes("HTTP/1.1 501 Not Implemented \r\n", "utf-8"))
+		connection_socket.send(bytes("HTTP/1.1 501 Not Implemented\r\n", "utf-8"))
 
 
 def initialize():
