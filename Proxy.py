@@ -19,7 +19,7 @@ with open("config.json") as data_file:
 
 proxyIp = config['server ip']
 proxyGate = config['porta']
-erro501 = config['501']
+
 
 print("Configurações Carregadas")
 
@@ -29,32 +29,39 @@ def proxy_thread(connection_socket, ):
 	
 	# May just be part of the message
 	msg = connection_socket.recv(4096).decode("utf-8")
-	
 	server_socket = socket(AF_INET, SOCK_STREAM)
-	
-	msg_packs = msg.split(" ", 1)
-	if msg_packs[0] == "GET":
-		request = "GET"
+
+	msg2 = msg.split("\r\n", 1)
+	msg_param = msg.split("\r\n")  # separado por linhas, parametros da requisicao
+	msg_primary = msg_param[0].split(" ")  # primeira linha com os paramentros get, url e versao http
+	if msg_primary[0] == "GET":
+		print(msg_param)
+		print(msg_primary)
+
+		# for each cada bloco msg_param
+		# msg_param.find('Connection:')
+
+		request = "GET"  # comeca montar o pacote de requisicao
 		print("\n")
-		print(msg_packs)
-		# PRIMEIRO FAZER FUNCIONAR CONECÇÃO DIRETA
-		
 		# Checar se a página esta em cache
 		#   Chegar se esta dentro da politica de atualização
 		#   Enviar solicitação ao servidor caso precise
 		#     Obter resposta do servidor
 		# Devolver resposta	ao usuário
 		
-		aux = msg_packs[1][7:]  # Remove 'http://'
+		aux = msg_primary[1][7:]  # Remove 'http://'
 		aux = aux.split("/", 1)  # Separates domain from the data
 		domain = aux[0]
 		print("DOMAIN: " + domain)
+
+		try:
+			# catch the ip from the domain
+			ip = gethostbyname(domain)
+			print("IP: " + ip)
+		except:
+			connection_socket.send(bytes("HTTP/1.1 502 Bad Gateway\r\n", "utf-8"))
 		
-		# catch the ip from the domain
-		ip = gethostbyname(domain)
-		print("IP: " + ip)
-		
-		request += " /" + aux[1]
+		request += " /" + aux[1] + " " + msg_primary[2] + "\r\n" + msg2[1]
 		print("REQUEST: ", end = '')
 		print(bytes(request, "utf-8"))
 		
