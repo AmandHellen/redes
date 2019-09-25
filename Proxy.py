@@ -28,21 +28,37 @@ def proxy_thread(connection_socket, ):
 	# print("***New Thread***")
 	
 	# May just be part of the message
-	msg = connection_socket.recv(4096).decode("utf-8")
+	msg = connection_socket.recv(4096)
+	print(msg)
+	msg = msg.decode("utf-8")
 	server_socket = socket(AF_INET, SOCK_STREAM)
 
 	msg2 = msg.split("\r\n", 1)
 	msg_param = msg.split("\r\n")  # separado por linhas, parametros da requisicao
 	msg_primary = msg_param[0].split(" ")  # primeira linha com os paramentros get, url e versao http
 	if msg_primary[0] == "GET":
+		print("#"*120)
+		print("MSG_PARAM: ", end='')
 		print(msg_param)
+		print("MSG_PRIMARY: ", end='')
 		print(msg_primary)
+		
+		# colocar todas os parametros importantes no dicionario, que seus valores serão atualizados e depois processados
+		thisdict = {
+			"Connection: ": "",
+			"AlgumaCoisa: ": ""
+		}
+		for bloco in msg_param:
+			for parm in thisdict:  # cada parametro a ser procurado
+				x = bloco.find(parm)
+				if x >= 0:  # caso tenha encontrado atualiza seu valor
+					thisdict[parm] = bloco[x + len(parm):]
+		
+		print("DICIONARIO: ", end='')
+		print(thisdict)
+		
+		request = "GET"  # começa montar o pacote de requisicao
 
-		# for each cada bloco msg_param
-		# msg_param.find('Connection:')
-
-		request = "GET"  # comeca montar o pacote de requisicao
-		print("\n")
 		# Checar se a página esta em cache
 		#   Chegar se esta dentro da politica de atualização
 		#   Enviar solicitação ao servidor caso precise
@@ -52,6 +68,10 @@ def proxy_thread(connection_socket, ):
 		aux = msg_primary[1][7:]  # Remove 'http://'
 		aux = aux.split("/", 1)  # Separates domain from the data
 		domain = aux[0]
+		caminho = " /"  # monta o caminho necessário para requisição
+		if len(aux) > 1:  # garante a execução, caso n haja aux[1]
+			caminho += aux[1]
+		
 		print("DOMAIN: " + domain)
 
 		try:
@@ -61,7 +81,9 @@ def proxy_thread(connection_socket, ):
 		except:
 			connection_socket.send(bytes("HTTP/1.1 502 Bad Gateway\r\n", "utf-8"))
 		
-		request += " /" + aux[1] + " " + msg_primary[2] + "\r\n" + msg2[1]
+		request += caminho + " " + msg_primary[2] + "\r\n"
+		if len(msg2) > 1:
+			request += msg2[1]
 		print("REQUEST: ", end = '')
 		print(bytes(request, "utf-8"))
 		
@@ -86,6 +108,8 @@ def proxy_thread(connection_socket, ):
 		server_socket.close()
 		connection_socket.close()
 		
+		print("#" * 120 + "\n")
+		
 	else:
 		connection_socket.send(bytes("HTTP/1.1 501 Not Implemented\r\n", "utf-8"))
 
@@ -102,7 +126,7 @@ def initialize():
 	# server begins listening for incoming TCP requests
 	proxy_socket.listen(5)
 	# output to console that server is listening
-	print("The Proxy running over TCP is ready to receive ... ")
+	print("The Proxy running over TCP is ready to receive ... \n")
 	
 	while True:
 		# establish connection with client
