@@ -9,8 +9,6 @@
   "WebAcess": "GET http://nyu.edu/projects/keithwross/ HTTP/1.1\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\nAccept-Language: pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3\r\nUpgrade-Insecure-Requests: 1\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18362\r\nAccept-Encoding: gzip, deflate\r\nHost: nyu.edu\r\nProxy-Connection: Keep-Alive\r\n\r\n'\n",
   "WebAcess": "GET http://cis.poly.edu/~/ HTTP/1.0\r\nHost: nyu.edu\r\n\r\n",
 
-
-
   "Porta": 8080,
   "Server ip": "127.0.0.1",
   "Cache time": "0:10",

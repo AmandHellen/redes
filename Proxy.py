@@ -229,10 +229,15 @@ def proxy_thread(connection_socket, ):
 		print("DADOS: ", end='')
 		print(dados)
 		'''
+		try:
+			connection_socket.send(dados)
+			print("SERVER: ", end='')
+			print(msg_primary[1])
 		
-		connection_socket.send(dados)
-		print("SERVER: ", end='')
-		print(msg_primary[1])
+		except:
+			server_socket.close()
+			connection_socket.close()
+			return
 		
 		'''
 		print("#" * 120 + "\n")
