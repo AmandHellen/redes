@@ -60,20 +60,20 @@ def controle_acesso(domain):
 	time = 60*int(times[0]) + int(times[1])
 	
 	if time0 < time < time1:
-		print("Time Not ALLOWED: ", end='')  # gerar o feed beack
+		print("Time Not ALLOWED: ", end='')  # gerar o feed back
 		return -1, error602
 		
 	# para os dias não permitidos
 	for daysNot in daysNotAllow:
 		if week == daysNot.upper():
-			print("Day Not ALLOWED: ", end='')  # gerar o feed beack
+			print("Day Not ALLOWED: ", end='')  # gerar o feed back
 			return -1, error601
 	
 	# para o domínio não permitido
 	for domainNot in domainNotAllow:
 		x = domain.find(domainNot)
 		if domain.upper() == domainNot.upper():
-			print("Domain Not ALLOWED: ", end='')  # gerar o feed beack
+			print("Domain Not ALLOWED: ", end='')  # gerar o feed back
 			return -1, error600
 	
 	return 0, ""
@@ -111,11 +111,12 @@ def proxy_thread(connection_socket, ):
 		print("MSG_PRIMARY: ", end='')
 		print(msg_primary)
 		'''
-		
+
 		# colocar todas os parametros importantes no dicionario, que seus valores serão atualizados e depois processados
 		thisdict = {
 			"Connection: ": "",
-			"Location: ": ""
+			"Location: ": "",
+			"Content-Type: ": "",
 		}
 		for bloco in msg_param:
 			for parm in thisdict:  # cada parametro a ser procurado
@@ -127,7 +128,8 @@ def proxy_thread(connection_socket, ):
 		print("DICIONARIO: ", end='')
 		print(thisdict)
 		'''
-		
+
+
 		if msg_primary[1][0:7] != "http://":
 			connection_socket.send(error501)
 			# close the connection and server sockets
@@ -207,12 +209,12 @@ def proxy_thread(connection_socket, ):
 					break
 				except:
 					dados += server_socket.recv(8192)
-				
+
 			for word in wordsNotAllow:
 				x = dados_decode.find(word)
 				if x >= 0:
-					print("Word Not ALLOWED: ", end='')  # gerar o feed beack
-					print(msg_primary[1])  # gerar o feed beack
+					print("Word Not ALLOWED: ", end='')  # gerar o feed back
+					print(msg_primary[1])  # gerar o feed back
 					connection_socket.send(error603)
 					server_socket.close()
 					connection_socket.close()
@@ -224,11 +226,22 @@ def proxy_thread(connection_socket, ):
 			server_socket.close()
 			connection_socket.close()
 			return
-		
-		'''
+
 		print("DADOS: ", end='')
 		print(dados)
-		'''
+
+		x = thisdict["Content-Type: "].find("text")
+		if x > 0:
+			for word in wordsNotAllow:
+				x = dados_decode.find(word)
+				if x >= 0:
+					print("Word Not ALLOWED: ", end='')  # gerar o feed back
+					print(msg_primary[1])  # gerar o feed back
+					connection_socket.send(error603)
+					server_socket.close()
+					connection_socket.close()
+					return
+
 		try:
 			connection_socket.send(dados)
 			print("SERVER: ", end='')
