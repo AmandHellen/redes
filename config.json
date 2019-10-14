@@ -1,14 +1,4 @@
 {
-  "WebAcess#": "GET http://dontpad.com/ HTTP/1.0\r\nHost: dontpad.com\r\n\r\n",
-  "WebAcess": "GET http://dontpad.com/ HTTP/1.0\r\nHost: dontpad.com\r\nProxy-Connection: Keep-Alive\r\n\r\n",
-  "WebAcess": "GET http://facebook.com/ HTTP/1.1\r\nHost: facebook.com/\r\n\r\n",
-  "WebAcess": "GET http://dontpad.com/ HTTP/1.1\r\nHost: dontpad.com\r\nProxy-Connection: Keep-Alive\r\n\r\n",
-  "WebAcess": "GET http://dontpad.com/ HTTP/1.1\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\nAccept-Language: pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3\r\nUpgrade-Insecure-Requests: 1\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18362\r\nAccept-Encoding: gzip, deflate\r\nHost: dontpad.com\r\nProxy-Connection: Keep-Alive\r\nCookie: __utmc=2528293; __utmz=2528293.1568251714.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=2528293.133780731.1568251714.1568933282.1569375869.6\r\n\r\n",
-  "WebAcess": "GET http://www.voobys.com/ HTTP/1.1\r\nHost: www.voobys.com\r\nProxy-Connection: keep-alive\r\nCache-Control: max-age=0\r\nUpgrade-Insecure-Requests: 1\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36 OPR/63.0.3368.94\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8\r\nAccept-Encoding: gzip, deflate\r\nAccept-Language: pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7\r\n\r\n'\n",
-  "WebAcess": "GET http://cis.poly.edu/~ross/ HTTP/1.1\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\nAccept-Language: pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3\r\nUpgrade-Insecure-Requests: 1\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18362\r\nAccept-Encoding: gzip, deflate\r\nHost: nyu.edu\r\nProxy-Connection: Keep-Alive\r\n\r\n'\n",
-  "WebAcess": "GET http://nyu.edu/projects/keithwross/ HTTP/1.1\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\nAccept-Language: pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3\r\nUpgrade-Insecure-Requests: 1\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18362\r\nAccept-Encoding: gzip, deflate\r\nHost: nyu.edu\r\nProxy-Connection: Keep-Alive\r\n\r\n'\n",
-  "WebAcess": "GET http://cis.poly.edu/~/ HTTP/1.0\r\nHost: nyu.edu\r\n\r\n",
-
   "Porta": 8080,
   "Server ip": "127.0.0.1",
   "Cache time": "1:15",
@@ -19,11 +9,11 @@
   "EXEMPLO: Time not Allowed": ["8:00", "18:00"],
   "Time not Allowed": ["01:00", "06:00"],
 
-  "EXEMPLO: Days not Allowed": ["MON", "TUE", "WED", "THU", "FRI", "SET", "SUN"],
-  "Days not Allowed": ["MON", "Tue", "Wed", "set", "SUN"],
+  "EXEMPLO: Days not Allowed": ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
+  "Days not Allowed": ["MON", "Tue", "Wed", "sat"],
 
   "EXEMPLO: Words not Allowed": ["lixo", "doido", "droga"],
-  "Words not Allowed": ["play", "lixo", "burro", "idiota", "estúpido", "droga", "doido", "pornografia"],
+  "Words not Allowed": ["play", "lixo", "burro", "idiota", "estupido", "droga", "doido", "porn"],
 
   "501": "HTTP/1.1 501 Not Implemented\r\nContent-Length: 137\r\nConnection: close\r\nContent-Type: text/html; charset=iso-8859-1\r\n\r\n<!DOCTYPE HTML PUBLIC>\n<html><head>\n<title>501 Not Implemented</title>\n</head><body>\n<h1><center>501 Not Implemented</h1>\n</body></html>\n",
   "502": "HTTP/1.1 502 Bad Gateway\r\nContent-Length: 129\r\nConnection: close\r\nContent-Type: text/html; charset=iso-8859-1\r\n\r\n<!DOCTYPE HTML PUBLIC>\n<html><head>\n<title>502 Bad Gateway</title>\n</head><body>\n<h1><center>502 Bad Gateway</h1>\n</body></html>\n",
@@ -31,6 +21,4 @@
   "601": "HTTP/1.1 200 Ok\r\nContent-Length: 129\r\nConnection: close\r\nContent-Type: text/html; charset=iso-8859-1\r\n\r\n<!DOCTYPE HTML PUBLIC>\n<html><head>\n<title>Day Not Allowed</title>\n</head><body>\n<h1><center>Day Not Allowed</h1>\n</body></html>\n",
   "602": "HTTP/1.1 200 Ok\r\nContent-Length: 131\r\nConnection: close\r\nContent-Type: text/html; charset=iso-8859-1\r\n\r\n<!DOCTYPE HTML PUBLIC>\n<html><head>\n<title>Time Not Allowed</title>\n</head><body>\n<h1><center>Time Not Allowed</h1>\n</body></html>\n",
   "603": "HTTP/1.1 200 Ok\r\nContent-Length: 129\r\nConnection: close\r\nContent-Type: text/html; charset=iso-8859-1\r\n\r\n<!DOCTYPE HTML PUBLIC>\n<html><head>\n<title>Word Not Allowed</title>\n</head><body>\n<h1><center>Word Not Allowed</h1>\n</body></html>\n"
-
-
 }
