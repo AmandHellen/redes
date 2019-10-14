@@ -17,13 +17,13 @@
   "Domain not Allowed": ["google", "facebook", "youtube", "dontpads"],
 
   "EXEMPLO: Time not Allowed": ["8:00", "18:00"],
-  "Time not Allowed": ["13:00", "23:00"],
+  "Time not Allowed": ["01:00", "06:00"],
 
   "EXEMPLO: Days not Allowed": ["MON", "TUE", "WED", "THU", "FRI", "SET", "SUN"],
   "Days not Allowed": ["MON", "Tue", "Wed", "set", "SUN"],
 
   "EXEMPLO: Words not Allowed": ["lixo", "doido", "droga"],
-  "Words not Allowed": ["play", "lixo"],
+  "Words not Allowed": ["play", "lixo", "burro", "idiota", "estúpido", "droga", "doido", "pornografia"],
 
   "501": "HTTP/1.1 501 Not Implemented\r\nContent-Length: 137\r\nConnection: close\r\nContent-Type: text/html; charset=iso-8859-1\r\n\r\n<!DOCTYPE HTML PUBLIC>\n<html><head>\n<title>501 Not Implemented</title>\n</head><body>\n<h1><center>501 Not Implemented</h1>\n</body></html>\n",
   "502": "HTTP/1.1 502 Bad Gateway\r\nContent-Length: 129\r\nConnection: close\r\nContent-Type: text/html; charset=iso-8859-1\r\n\r\n<!DOCTYPE HTML PUBLIC>\n<html><head>\n<title>502 Bad Gateway</title>\n</head><body>\n<h1><center>502 Bad Gateway</h1>\n</body></html>\n",
